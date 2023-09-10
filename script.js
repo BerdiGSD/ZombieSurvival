@@ -1,14 +1,22 @@
 let ammo = 8; 
 let shotsToWin = 3;
 
+
+
 function statusOnFight () {
   if(action.toLowerCase() === "yes") {
-    shotsFired(); 
-    alert(`${ammo} remaining`);
-    hitOrMiss();
-  } else {
-    alarm (`Zombie noticed you`)
+    fightSequence();
+  } else{
+    alert (`Zombie noticed you`)
+    secondRoute();
   }
+}
+
+function fightSequence() {
+  shotsFired(); 
+  alert(`${ammo} remaining`);
+  hitOrMiss();
+  lifePoints()
 }
 
 function shotsFired () {
@@ -27,9 +35,10 @@ function hitOrMiss () {
   }
 }
 
-function lifeOrDeath () {
+function lifePoints () {
   if (shotsToWin === 0) {
     alert (`You did it! You live to see another day`);
+    return alert(`Game Over, You Won!!!`)
   } else if ((shotsToWin > 0) && (ammo === 0)){
     alert (`Game Over, the zombie got to you`);
   } else {
@@ -38,7 +47,25 @@ function lifeOrDeath () {
   }
 }
 
+function secondRoute () {
+  let responseToZombie = ""
+  alert ('You have to fight for your life now');
+  responseToZombie = prompt (`Do you want to take a shot at it?`);
+
+  if (responseToZombie.toLowerCase() === "yes") {
+    fightSequence();
+  } else {
+    return alert(`Game Over, zombies are hungry after all`)
+  }
+}
+
 //This will start the reduction in ammo
 let action = prompt('You run across a zombie, do you take the shot?');
 
-statusOnFight();
+if (action === "yes") {
+  statusOnFight();
+} else {
+  secondRoute();
+}
+
+
