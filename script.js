@@ -2,7 +2,7 @@ let ammo = 8;
 let shotsToWin = 3;
 
 
-
+// core function to initiate the rest
 function statusOnFight () {
   if(action.toLowerCase() === "yes") {
     fightSequence();
@@ -12,6 +12,7 @@ function statusOnFight () {
   }
 }
 
+// repeatable fight sequence
 function fightSequence() {
   shotsFired(); 
   alert(`${ammo} remaining`);
@@ -19,11 +20,13 @@ function fightSequence() {
   lifePoints()
 }
 
+// function to decrement the ammo count
 function shotsFired () {
   ammo -= 1
   return ammo;
 }
 
+// random variable to decide on a 50 / 50 chance if the shot will hit or not
 function hitOrMiss () {
   let chances = Math.floor(Math.random() * 100) + 1;
   if (chances <50) {
@@ -35,6 +38,7 @@ function hitOrMiss () {
   }
 }
 
+// conditions for winning the fight
 function lifePoints () {
   if (shotsToWin === 0) {
     alert (`You did it! You live to see another day`);
@@ -47,6 +51,7 @@ function lifePoints () {
   }
 }
 
+// alternative route in the story that will still require you to fight the zommbie
 function secondRoute () {
   let responseToZombie = ""
   alert ('You have to fight for your life now');
